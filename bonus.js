@@ -8,7 +8,8 @@ const channels = require("./channels.json");
  * BONUS: use iteration method `.reduce()`
  ****************************************************************/
 function totalVideosDuration(channel) {
-  // Your code here
+  const durations = channel.videos.map(video => video.duration);
+  return durations.reduce((accum, current) => accum + current)
 }
 
 /**************************************************************
@@ -20,7 +21,8 @@ function totalVideosDuration(channel) {
  * BONUS: use iteration method `.sort()`
  ****************************************************************/
 function channelWithMostContent(channels) {
-  // Your code here
+  const sorted = channels.sort((a,b) => totalVideosDuration(a) - totalVideosDuration(b));
+  return sorted[sorted.length-1]
 }
 
 /**************************************************************
@@ -31,15 +33,21 @@ function channelWithMostContent(channels) {
  * BONUS: use iteration method `.sort()`
  ****************************************************************/
 function longestChannelName(channels) {
-  // Your code here
+  let sortedByName = channels.sort((a,b) => a.name.length - b.name.length);
+  return sortedByName[sortedByName.length-1]
 }
 
 // Check your answers by running this file and comparing what it logs
 
-console.log(totalVideosDuration(channels[0]));
+channels.forEach(channel => console.log(totalVideosDuration(channel)));
+// I modified it so it logs total video durations for all channels
 // Should log:
-
+//
 // 636
+// 82
+// 58
+// 77
+// 4
 
 console.log(channelWithMostContent(channels));
 // Should log:
